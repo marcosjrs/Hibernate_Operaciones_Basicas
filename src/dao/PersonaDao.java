@@ -35,6 +35,21 @@ public class PersonaDao {
             }
         }
     }
+    public void actualizar(Persona personaActualizada) {
+        try {
+            em = getEntityManager();
+            em.getTransaction().begin();
+            em.merge(personaActualizada); // actualizamos los datos con personaActualizada
+            em.getTransaction().commit();
+        } catch (Exception ex) {
+            System.out.println("Error al actualizar objeto:" + ex.getMessage());
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+        }
+    }   
+
 
     public List<Persona> listar() {
         em = getEntityManager();
