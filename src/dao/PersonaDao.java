@@ -19,7 +19,12 @@ public class PersonaDao {
     
     private EntityManager getEntityManager() {
         return emf.createEntityManager();
-    }   
-    
+    }
 
+    public List<Persona> listar() {
+        em = getEntityManager();
+        Query query = em.createQuery("SELECT p FROM Persona p"); //creamos con hql
+        return query.getResultList();
+    } 
+    
 }
