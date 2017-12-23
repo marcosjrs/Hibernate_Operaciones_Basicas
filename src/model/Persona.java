@@ -1,17 +1,25 @@
 package model;
 
+import java.io.Serializable;
+import javax.persistence.*;
 
-public class Persona {
-    private int id;
+@Entity
+public class Persona implements Serializable {
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @Column(name = "id_persona")
+    private int idPersona;
     private String nombre;
     private String apellido;
 
-    public int getId() {
-        return id;
+    public int getIdPersona() {
+        return idPersona;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdPersona(int idPersona) {
+        this.idPersona = idPersona;
     }
 
     public String getNombre() {
@@ -29,4 +37,11 @@ public class Persona {
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
+
+    @Override
+    public String toString() {
+        return "Persona [apellido=" + apellido + ", idPersona=" + idPersona + ", nombre=" + nombre + "]";
+    }
+    
+    
 }
