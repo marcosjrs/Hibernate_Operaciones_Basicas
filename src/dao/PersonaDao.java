@@ -35,6 +35,7 @@ public class PersonaDao {
             }
         }
     }
+    
     public void actualizar(Persona personaActualizada) {
         try {
             em = getEntityManager();
@@ -48,8 +49,23 @@ public class PersonaDao {
                 em.close();
             }
         }
-    }   
-
+    }  
+    
+    public void eliminar(Persona personaAEliminar){
+        try {
+            em = getEntityManager();
+            em.getTransaction().begin();
+            //para eliminar necesitamos "recuperarla" y para estos casos se utiliza el merge
+            em.remove(em.merge(personaAEliminar)); 
+            em.getTransaction().commit();
+        } catch (Exception ex) {
+            System.out.println("Error al actualizar objeto:" + ex.getMessage());
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+        }
+    }
 
     public List<Persona> listar() {
         em = getEntityManager();
