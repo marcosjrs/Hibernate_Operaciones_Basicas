@@ -16,7 +16,7 @@ public class HibernatePrueba1 {
         
         //Creamos una instancia de Persona y la insertamos
         Persona Miriam = new Persona();
-        Miriam.setNombre("Miriam");
+        Miriam.setNombre("Mirian");
         Miriam.setApellido("VB");
         personaDao.insertar(Miriam);   
         
@@ -26,11 +26,28 @@ public class HibernatePrueba1 {
             System.out.println("persona:" + p);
         }
         
+        //Actualizamos
+        Persona ultimaPersona = personas.get(personas.size()-1);
+        ultimaPersona.setNombre("Miriam");
+        personaDao.actualizar(ultimaPersona);
+        
         //Buscamos por un id
         Persona personaABuscar = new Persona();
-        personaABuscar.setIdPersona(personas.get(0).getIdPersona());
+        personaABuscar.setIdPersona(personas.get(personas.size()-1).getIdPersona());
         Persona personaEncontrada = personaDao.buscarPorId(personaABuscar );
         System.out.println("persona encontrada:" + personaEncontrada);
+        
+        //Eliminamos
+        personaDao.eliminar(personaABuscar);
+        
+        //Listamos todas las personas, recordando que implementa toString()
+        List<Persona> personasRestantes = personaDao.listar();
+        for(Persona p: personasRestantes){
+            System.out.println("persona:" + p);
+        }
+        
+        
+        
     }
 
 }
