@@ -27,4 +27,10 @@ public class PersonaDao {
         return query.getResultList();
     } 
     
+    public Persona buscarPorId(Persona personaBuscarConId) {
+        em = getEntityManager();
+        return em.find(Persona.class, personaBuscarConId.getIdPersona());
+    }
+
+    
 }
